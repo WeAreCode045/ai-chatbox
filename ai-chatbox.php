@@ -28,8 +28,10 @@ function ai_chatbox_enqueue_assets() {
 }
 add_action('wp_enqueue_scripts', 'ai_chatbox_enqueue_assets');
 
-// Add the chatbox to bb-media-info-section
-function ai_chatbox_add_to_section() {
+
+
+function ai_chatbox_shortcode() {
+    ob_start(); // Start output buffering
     ?>
     <div id="ai-chatbox" class="ai-chatbox">
         <div class="chatbox-container">
@@ -39,8 +41,9 @@ function ai_chatbox_add_to_section() {
         </div>
     </div>
     <?php
+    return ob_get_clean(); // Return the buffered output
 }
-add_action('wp_footer', 'ai_chatbox_add_to_section');
+add_shortcode('ai_chatbox', 'ai_chatbox_shortcode');
 
 // Handle AJAX requests
 function ai_chatbox_handle_ajax() {
