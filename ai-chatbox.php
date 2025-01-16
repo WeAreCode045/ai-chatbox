@@ -7,14 +7,7 @@
  */
 
 // Enqueue scripts and styles
-function ai_chatbox_enqueue_assets() {
-    wp_enqueue_script(
-        'ai-chatbox-js',
-        plugin_dir_url(__FILE__) . 'js/chatbox.js',
-        array('jquery'),
-        '1.0',
-        true
-    );
+
 
     wp_enqueue_style(
         'ai-chatbox-css',
