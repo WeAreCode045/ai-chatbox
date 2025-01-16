@@ -18,7 +18,7 @@
         'ajax_url' => admin_url('admin-ajax.php'),
         'openai_api_key' => 'your-openai-api-key' // Replace with your OpenAI API key or handle this securely
     ));
-}
+
 add_action('wp_enqueue_scripts', 'ai_chatbox_enqueue_assets');
 
 
