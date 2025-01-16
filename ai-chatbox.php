@@ -71,5 +71,33 @@ function ai_chatbox_handle_ajax() {
         wp_send_json_success(array('response' => $body['choices'][0]['message']['content']));
     }
 }
+
+bp_nouveau_activity_hook( 'after', 'entry_comments' );
+add_action('bb_media_info_section_render', function () {
+    echo do_shortcode('[ai_chatbox]');
+});
 add_action('wp_ajax_get_ai_response', 'ai_chatbox_handle_ajax');
 add_action('wp_ajax_nopriv_get_ai_response', 'ai_chatbox_handle_ajax');
+
+function ai_chatbox_enqueue_assets() {
+    if (is_singular() && has_shortcode(get_post()->post_content, 'ai_chatbox')) {
+        wp_enqueue_script(
+            'ai-chatbox-js',
+            plugin_dir_url(__FILE__) . 'js/chatbox.js',
+            array('jquery'),
+            '1.0',
+            true
+        );
+
+        wp_enqueue_style(
+            'ai-chatbox-css',
+            plugin_dir_url(__FILE__) . 'css/chatbox.css'
+        );
+
+        wp_localize_script('ai-chatbox-js', 'aiChatboxVars', array(
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'openai_api_key' => 'your-openai-api-key' // Replace with your OpenAI API key
+        ));
+    }
+}
+add_action('wp_enqueue_scripts', 'ai_chatbox_enqueue_assets');
