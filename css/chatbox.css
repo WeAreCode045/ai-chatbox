@@ -1,0 +1,40 @@
+#ai-chatbox {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.chatbox-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#chat-output {
+    height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background: #fff;
+    margin-bottom: 10px;
+}
+
+#chat-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#send-chat {
+    padding: 10px 15px;
+    background-color: #0073aa;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#send-chat:hover {
+    background-color: #005177;
+}
